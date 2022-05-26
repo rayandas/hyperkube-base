@@ -23,9 +23,9 @@ RUN ln -s /hyperkube /apiserver \
 # ucf, which itself depends on /bin/bash.
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
-
+RUN whoami
 RUN echo CACHEBUST>/dev/null \
-    && apt-get update \
+    && sudo apt-get update \
     && apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     apt-transport-https \
